@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3702f5580bda6df45874caeb30d3a8d9, type: 3}
+  m_Name: StoryGraph_Main
+  m_EditorClassIdentifier: Assembly-CSharp::StoryGraphData
+  GraphId: main_story
+  StartNodeId: start_tavern
+  Nodes:
+  - NodeId: start_tavern
+    NodeType: 0
+    TextKey: story_start_tavern
+    Choices:
+    - ChoiceId: 'choice_help_villager '
+      TextKey: 
+      TargetNodeId: forest_combat
+      Effects: []
+      Requirement:
+        HasRequirement: 0
+        RequiredStat: 0
+        MinimumValue: 0
+    - ChoiceId: 'choice_ignore_villager '
+      TextKey: 
+      TargetNodeId: ruins_entry
+      Effects: []
+      Requirement:
+        HasRequirement: 0
+        RequiredStat: 0
+        MinimumValue: 0
+    CombatEncounterAddress: 
+    IsFinalNode: 0
+  - NodeId: forest_combat
+    NodeType: 2
+    TextKey: story_forest_combat
+    Choices:
+    - ChoiceId: 'choice_continue '
+      TextKey: 
+      TargetNodeId: ruins_entry
+      Effects: []
+      Requirement:
+        HasRequirement: 0
+        RequiredStat: 0
+        MinimumValue: 0
+    CombatEncounterAddress: enemy_goblin
+    IsFinalNode: 0
+  - NodeId: ruins_entry
+    NodeType: 1
+    TextKey: story_ruins_entry
+    Choices:
+    - ChoiceId: 'choice_enter_ruins '
+      TextKey: 
+      TargetNodeId: necromancer_combat
+      Effects: []
+      Requirement:
+        HasRequirement: 0
+        RequiredStat: 0
+        MinimumValue: 0
+    CombatEncounterAddress: 
+    IsFinalNode: 0
+  - NodeId: necromancer_combat
+    NodeType: 2
+    TextKey: story_necromancer_intro
+    Choices: []
+    CombatEncounterAddress: enemy_necromancer
+    IsFinalNode: 0
+  - NodeId: ending_good
+    NodeType: 3
+    TextKey: ending_good
+    Choices: []
+    CombatEncounterAddress: 
+    IsFinalNode: 1
+  - NodeId: ending_defeat
+    NodeType: 3
+    TextKey: ending_defeat
+    Choices: []
+    CombatEncounterAddress: 
+    IsFinalNode: 1

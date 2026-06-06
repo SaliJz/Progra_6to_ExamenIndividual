@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Story_es
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: dac4c706a29cc864dab12ae08f56f8fd, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 865517830144
+    m_Localized: Despiertas en una taberna cuando un aldeano pide ayuda.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 897566507008
+    m_Localized: Ayudar al aldeano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 973164642304
+    m_Localized: Ignorarlo y seguir solo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1009906745344
+    m_Localized: Te internas en el bosque y una criatura salta desde la maleza.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1042253217792
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1091007807488
+    m_Localized: "Las ruinas antiguas emiten una energ\xEDa oscura."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1118186897408
+    m_Localized: Entrar a las ruinas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1161031712768
+    m_Localized: "Un nigromante protege el coraz\xF3n de la ruina."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1199854190592
+    m_Localized: Derrotas al nigromante y salvas la aldea.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1239788158976
+    m_Localized: "Ca\xEDste en la oscuridad antes de completar tu misi\xF3n."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
