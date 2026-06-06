@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     public PlayerCharacter Player { get; private set; }
     public LocalizationManager LocalizationManager { get; private set; }
     public AddressableLoader AddressableLoader { get; private set; }
+    public GamePanelController PanelController { get; private set; }
 
     [Header("Runtime References")]
     public NarrativeManager NarrativeManager { get; private set; }
     public CombatManager CombatManager { get; private set; }
-    public GamePanelController PanelController { get; private set; }
 
     [Header("Addresses")]
     [SerializeField] private string storyGraphAddress = "story_graph_main";
