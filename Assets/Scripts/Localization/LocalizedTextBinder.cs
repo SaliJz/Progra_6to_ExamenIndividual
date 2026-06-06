@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class LocalizedTextBinder : MonoBehaviour
@@ -13,12 +14,17 @@ public class LocalizedTextBinder : MonoBehaviour
 
     private void OnEnable()
     {
-        localizedString = new LocalizedString
-        {
-            TableReference = tableName,
-            TableEntryReference = entryKey
-        };
+        LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+        RefreshText();
+    }
 
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+    }
+
+    private void OnLocaleChanged(Locale locale)
+    {
         RefreshText();
     }
 
@@ -36,7 +42,7 @@ public class LocalizedTextBinder : MonoBehaviour
             return;
         }
 
-        localizedString = new LocalizedString
+        LocalizedString localizedString = new LocalizedString
         {
             TableReference = tableName,
             TableEntryReference = entryKey
@@ -50,12 +56,13 @@ public class LocalizedTextBinder : MonoBehaviour
         }
         else
         {
-            handle.Completed += OnStringLoaded;
+            handle.Completed += op =>
+            {
+                if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                {
+                    targetText.text = op.Result;
+                }
+            };
         }
-    }
-
-    private void OnStringLoaded(AsyncOperationHandle<string> handle)
-    {
-        targetText.text = handle.Result;
     }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Runtime References")]
     public NarrativeManager NarrativeManager { get; private set; }
     public CombatManager CombatManager { get; private set; }
+    public GamePanelController PanelController { get; private set; }
 
     [Header("Addresses")]
     [SerializeField] private string storyGraphAddress = "story_graph_main";
@@ -86,11 +87,18 @@ public class GameManager : MonoBehaviour
         {
             NarrativeManager = FindFirstObjectByType<NarrativeManager>();
             CombatManager = FindFirstObjectByType<CombatManager>();
+            PanelController = FindFirstObjectByType<GamePanelController>();
 
             if (NarrativeManager != null)
             {
                 NarrativeManager.OnCombatRequested -= HandleCombatRequested;
                 NarrativeManager.OnCombatRequested += HandleCombatRequested;
+
+                NarrativeManager.OnNodeChanged -= HandleNodeChanged;
+                NarrativeManager.OnNodeChanged += HandleNodeChanged;
+
+                NarrativeManager.OnEndingReached -= HandleEndingReached;
+                NarrativeManager.OnEndingReached += HandleEndingReached;
             }
 
             if (CombatManager != null)
@@ -103,11 +111,18 @@ public class GameManager : MonoBehaviour
 
     private void HandleCombatRequested(string enemyAddress)
     {
-        AddressableLoader.LoadEnemyAsync(enemyAddress, enemyData =>
+        PanelController?.ShowCombat();
+
+        AddressableLoader?.LoadEnemyAsync(enemyAddress, enemyData =>
         {
             EnemyCharacter enemy = enemyData.CreateRuntimeEnemy();
-            CombatManager.StartCombat(Player, enemy);
+            CombatManager?.StartCombat(Player, enemy);
         });
+    }
+
+    private void HandleNodeChanged(StoryNodeData node)
+    {
+        PanelController?.ShowNarrative();
     }
 
     private void HandleCombatEnded(bool playerWon)
@@ -118,6 +133,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        PanelController?.ShowEnding();
+
         StoryNodeData defeatEnding = new StoryNodeData
         {
             NodeId = "ending_defeat",
@@ -126,6 +143,11 @@ public class GameManager : MonoBehaviour
             IsFinalNode = true
         };
 
-        NarrativeManager.ForceEnding(defeatEnding);
+        NarrativeManager?.ForceEnding(defeatEnding);
+    }
+
+    private void HandleEndingReached(StoryNodeData node)
+    {
+        PanelController?.ShowEnding();
     }
 }
