@@ -10,8 +10,6 @@ public class LocalizedTextBinder : MonoBehaviour
     [SerializeField] private string tableName = "UI";
     [SerializeField] private string entryKey;
 
-    private LocalizedString localizedString;
-
     private void OnEnable()
     {
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
